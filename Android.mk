@@ -75,11 +75,13 @@ $(shell mkdir -p $(TARGET_OUT)/lib/modules; \
 endif
 endif
 
+ifneq ($(PRODUCT_PLATFORM_SOD),true)
 ifeq ($(PRODUCT_VENDOR_MOVE_ENABLED),true)
 $(shell ln -sf /mnt/vendor/persist/wlan_mac.bin $(TARGET_OUT_VENDOR)/firmware/wlan/qca_cld/wlan_mac.bin)
 else
 $(shell ln -sf /mnt/vendor/persist/wlan_mac.bin $(TARGET_OUT_ETC)/firmware/wlan/qca_cld/wlan_mac.bin)
 endif
+endif # PRODUCT_PLATFORM_SOD
 endif # DLKM check
 endif # supported target check
 endif # WLAN enabled check
